@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag deadlock1892/valhalla:latest
-    - name: Push image to Docker hub
-      run: 
-        echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u deadlock1892 --password-stdin
-        docker push deadlock1892/valhalla:latest
+    - name: Login to Docker hub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u deadlock1892 --password-stdin
+    - name: Push the Docker image
+      run: docker push deadlock1892/valhalla:latest
